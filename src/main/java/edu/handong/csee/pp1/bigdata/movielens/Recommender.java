@@ -244,16 +244,108 @@ class FrequentItemsetSize2 implements Comparable
 class FrequentItemsetSize3 implements Comparable 
 {
 	int [] items ;
+		int first ;
+		int second ;
+		int third ;
+		public FrequentItemsetSize3(int first, int second, int third) {
+			if (first <= second) {
+				if(second <= third) {
+					this.first = first ;
+					this.second = second ;
+					this.third = third;
+				}
+				else {
+					if(first<=third) {
+					this.first = first ;
+					this.second = third;
+					this.third = second;
+					}
+					else {
+						this.first = second;
+						this.second = third;
+						this.third = first;
+					}
+				}
+			}
+			else {
+				if(first <= third) {
+					this.first = second;
+					this.second = first;
+					this.third = third;
+				}
+				else {
+					if(second<=third) {
+						this.first = second;
+						this.second = third;
+						this.third = first;
+					}
+					else {
+						this.first = first;
+						this.second = third;
+						this.third = second;
+					}
+				}
+			}
+		}
 
 	FrequentItemsetSize3(Set<Integer> s) {
 		/* TODO: implement this method */
-		
-		// values in s must be sorted and save into items array
+		Integer [] elem = s.toArray(new Integer[3]) ;
+		if (elem[0]<= elem[1]) {
+			if(elem[1] <= elem[2]) {
+				this.items[0] = elem[0] ;
+				this.items[1] = elem[1] ;
+				this.items[2] = elem[2];
+			}
+			else {
+				if(elem[0]<=elem[2]) {
+				this.items[0] = elem[0] ;
+				this.items[1] = elem[2];
+				this.items[2] = elem[1];
+				}
+				else {
+					this.items[0] = elem[1];
+					this.items[1] = elem[2];
+					this.items[2] = elem[0];
+				}
+			}
+		}
+		else {
+			if(elem[0]<=elem[2]) {
+				this.items[0] = elem[1];
+				this.items[1] = elem[0];
+				this.items[2] = elem[2];
+			}
+			else {
+				if(elem[1]<=elem[2]) {
+					this.items[0] = elem[1];
+					this.items[1] = elem[2];
+					this.items[2] = elem[0];
+				}
+				else {
+					this.items[0] = elem[0];
+					this.items[1] = elem[2];
+					this.items[2] = elem[1];
+				}
+			}
+		}
 	}
+		// values in s must be sorted and save into items array
 
 	@Override
 	public int compareTo(Object obj) {  // this method is used for sorting when using TreeMap
 		/* TODO: implement this method */
-		return 0 ;
+		FrequentItemsetSize3 p = (FrequentItemsetSize3) obj ;
+		if (this.first < p.first) 
+			return -1 ;
+		if (this.first > p.first)
+			return 1 ;
+		else {
+			if(this.second< p.second)
+				return -1;
+			if(this.second > p.second)
+				return 1;
+			return (this.third - p.third) ;
+		}
 	}
 }
