@@ -152,7 +152,7 @@ public class Recommender
 
 	private int predictPair(HashSet<Integer> anItemset, Integer j) {
 		/* TODO: implement this method */
-/*		if (anItemset.size() < 1)
+		if (anItemset.size() < 1)
 			return 0 ;
 
 		// Compute support, confidence, or lift. Based on their threshold, decide how to predict. Return 1 when metrics are satisfied by thresholds, otherwise 0.
@@ -164,7 +164,7 @@ public class Recommender
 			TreeSet<Integer> assocRule = new TreeSet<Integer>(p) ;
 			assocRule.add(j) ;
 			FrequentItemsetSize2 item = new FrequentItemsetSize2(assocRule) ;	
-			Integer numBasketsForIUnionj = freqItemsetsWithSize2.get(item) ; // All itemsets in freqItemsetsWithSize3 satisfy minimum support when the are computed.
+			Integer numBasketsForIUnionj = freqItemsetsWithSize2.get(item); // All itemsets in freqItemsetsWithSize3 satisfy minimum support when the are computed.
 			if (numBasketsForIUnionj == null)
 				continue ;
 			
@@ -177,7 +177,7 @@ public class Recommender
 
 		if (evidence >= minSupport) 
 			return 1 ;
-*/
+
 		return 0 ;
 		
 		// Compute support, confidence, or lift. Based on their threshold, decide how to predict. Return 1 when metrics are satisfied by threshold, otherwise 0.
